@@ -1,6 +1,9 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    <strong>
+        Usuário: {{ author.first_name }} ({{ author.username }})
+    </strong>
     {% for post in posts %}
         <article class="post">
             {% if post.published_date %}
@@ -12,16 +15,17 @@
                     No date
                 </time>
             {% endif %}
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <h2>
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    {{ post.title }}
+                </a>
+            </h2>
             <p>{{ post.text|linebreaksbr }}</p>
         </article>
+    {% empty %}
+        <h3>No posts yet =/</h3>
     {% endfor %}
 
-    <hr/ >
-    <h2>Usuários</h2>
-    {% for user in users %}
-        <a href="{% url 'author_perfil' username=user.username %}">
-            {{ user }} <br />
-        </a>
-    {% endfor %}
+    {% include 'blog/footer.html' %}
+
 {% endblock %}
