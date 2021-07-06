@@ -1,6 +1,12 @@
 {% extends 'blog/base.html' %}
+{% load unicorn %}
+
+{% block scripts %}
+    {% unicorn_scripts %}
+{% endblock %}
 
 {% block content %}
+    {% csrf_token %}
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
@@ -21,6 +27,10 @@
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
+        <span class="date">Visits: {{ post.views }}</span>
+        <br />
+        <br />
+        {% unicorn 'hello-world' %}
     </article>
 
     <hr class="m-2">

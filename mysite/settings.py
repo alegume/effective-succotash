@@ -22,8 +22,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    'django_unicorn',
 ]
+
+# settings.py
+UNICORN = {
+    "MINIFIED":  not DEBUG,
+    "APPS": ["blog", ],
+    "SERIAL": {
+        "ENABLED": False,
+        "TIMEOUT": 60,
+    },
+    "CACHE_ALIAS": "default",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
