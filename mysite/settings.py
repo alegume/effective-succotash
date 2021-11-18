@@ -1,8 +1,6 @@
 from pathlib import Path
 import os
 
-from .local_settings import *
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,6 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
+DEBUG = True
+
+SECRET_KEY = 'dmsodics ionior3'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
 # Application definition
 
@@ -24,7 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'django_unicorn',
+    'ckeditor'
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # settings.py
 UNICORN = {
@@ -80,13 +86,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': '',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 

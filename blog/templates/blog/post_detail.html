@@ -26,7 +26,7 @@
             <a class="btn btn-default float-end" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
         <h2>{{ post.title }}</h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.text|safe }}</p>
         <span class="date">Visits: {{ post.views }}</span>
         <br />
         <br />
